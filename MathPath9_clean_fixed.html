@@ -1,0 +1,3953 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    html,
+    body {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    img,
+    video,
+    iframe {
+        max-width: 100%;
+        height: auto;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+        max-width: 100%;
+        font-size: 16px;
+    }
+
+    @media (max-width: 768px) {
+        nav {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        nav a,
+        nav button {
+            min-height: 44px;
+            padding: 10px 12px;
+        }
+
+        main {
+            width: 100%;
+            max-width: 100%;
+        }
+
+        .page {
+            width: 100%;
+            max-width: 100%;
+            padding: 24px 16px;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 8vw, 3rem);
+            line-height: 1.1;
+        }
+
+        h2 {
+            font-size: clamp(1.4rem, 6vw, 2rem);
+        }
+
+        .grid,
+        .cards,
+        .card-grid,
+        .features,
+        .lesson-grid {
+            grid-template-columns: 1fr !important;
+        }
+
+        .card,
+        .lesson-card,
+        .quiz-card {
+            width: 100%;
+            max-width: 100%;
+        }
+
+        form {
+            width: 100%;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            min-height: 44px;
+        }
+
+        textarea {
+            min-height: 140px;
+        }
+
+        table {
+            display: block;
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .page {
+            padding: 20px 12px;
+        }
+
+        nav {
+            justify-content: center;
+        }
+
+        nav a,
+        nav button {
+            flex: 1 1 auto;
+            text-align: center;
+        }
+
+        p {
+            line-height: 1.6;
+        }
+    }
+</style>
+<meta name="google-site-verification" content="GotxIWQXkZhDQxOBTS9X_XZRF5mXvaYqPPVogHj4yQI" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MathPath 9 | Advanced Grade 9 Mathematics</title>
+
+<style>
+
+:root {
+    --primary:#2563eb;
+    --primary-dark:#1d4ed8;
+    --primary-light:#eff6ff;
+
+    --purple:#7c3aed;
+    --green:#16a34a;
+    --orange:#f59e0b;
+    --red:#dc2626;
+
+    --bg:#f5f7fb;
+    --card:#ffffff;
+    --text:#172033;
+    --muted:#64748b;
+    --border:#e2e8f0;
+
+    --sidebar:260px;
+}
+
+* {
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html {
+    scroll-behavior:smooth;
+}
+
+body {
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    background:var(--bg);
+    color:var(--text);
+}
+
+/* ================================
+   SIDEBAR
+================================ */
+
+.sidebar {
+    position:fixed;
+    left:0;
+    top:0;
+    width:var(--sidebar);
+    height:100vh;
+
+    background:var(--card);
+    border-right:1px solid var(--border);
+
+    display:flex;
+    flex-direction:column;
+
+    z-index:1000;
+}
+
+.logo {
+    padding:25px 22px;
+    font-size:1.45rem;
+    font-weight:800;
+
+    border-bottom:1px solid var(--border);
+
+    color:var(--primary);
+}
+
+.logo span {
+    color:var(--purple);
+}
+
+.sidebar-nav {
+    padding:20px 12px;
+    flex:1;
+}
+
+.sidebar-button {
+    width:100%;
+    border:none;
+    background:transparent;
+
+    padding:13px 15px;
+    margin-bottom:5px;
+
+    border-radius:10px;
+
+    text-align:left;
+
+    font-size:.95rem;
+    font-weight:600;
+
+    color:var(--text);
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.sidebar-button:hover {
+    background:var(--primary-light);
+    color:var(--primary);
+}
+
+.sidebar-button.active {
+    background:var(--primary-light);
+    color:var(--primary);
+}
+
+.sidebar-bottom {
+    padding:15px;
+    border-top:1px solid var(--border);
+}
+
+.theme-button {
+    width:100%;
+    padding:12px;
+    border:1px solid var(--border);
+    border-radius:10px;
+    background:transparent;
+    cursor:pointer;
+    font-weight:600;
+    color:var(--text);
+}
+
+/* ================================
+   MAIN
+================================ */
+
+.main {
+    margin-left:var(--sidebar);
+    min-height:100vh;
+}
+
+/* ================================
+   TOP BAR
+================================ */
+
+.topbar {
+    height:70px;
+
+    background:var(--card);
+    border-bottom:1px solid var(--border);
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 35px;
+
+    position:sticky;
+    top:0;
+    z-index:900;
+}
+
+.search {
+    width:360px;
+
+    padding:11px 15px;
+
+    border:1px solid var(--border);
+    border-radius:9px;
+
+    outline:none;
+
+    background:var(--bg);
+    color:var(--text);
+}
+
+.search:focus {
+    border-color:var(--primary);
+}
+
+.profile {
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.avatar {
+    width:38px;
+    height:38px;
+
+    border-radius:50%;
+
+    background:var(--primary);
+    color:white;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-weight:800;
+}
+
+/* ================================
+   PAGE
+================================ */
+
+.page {
+    padding:40px;
+    max-width:1450px;
+    margin:auto;
+}
+
+.page-title {
+    margin-bottom:30px;
+}
+
+.page-title h1 {
+    font-size:2.4rem;
+    margin-bottom:7px;
+}
+
+.page-title p {
+    color:var(--muted);
+}
+
+/* ================================
+   DASHBOARD
+================================ */
+
+.welcome {
+    background:
+        linear-gradient(
+            135deg,
+            #eef4ff,
+            #f4efff
+        );
+
+    padding:35px;
+
+    border-radius:20px;
+
+    margin-bottom:30px;
+}
+
+.welcome h1 {
+    font-size:2.3rem;
+    margin-bottom:10px;
+}
+
+.welcome p {
+    color:var(--muted);
+    max-width:650px;
+}
+
+.dashboard-grid {
+    display:grid;
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(220px,1fr));
+
+    gap:20px;
+
+    margin-bottom:30px;
+}
+
+.stat-card {
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:24px;
+}
+
+.stat-icon {
+    font-size:1.8rem;
+    margin-bottom:12px;
+}
+
+.stat-number {
+    font-size:2rem;
+    font-weight:800;
+}
+
+.stat-label {
+    color:var(--muted);
+}
+
+/* ================================
+   PROGRESS
+================================ */
+
+.progress-card {
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:25px;
+    margin-bottom:30px;
+}
+
+.progress-header {
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:12px;
+}
+
+.progress-bar {
+    width:100%;
+    height:12px;
+
+    background:#e5e7eb;
+
+    border-radius:20px;
+
+    overflow:hidden;
+}
+
+.progress-fill {
+    height:100%;
+    background:var(--primary);
+
+    width:0%;
+
+    transition:.4s;
+}
+
+/* ================================
+   CARDS
+================================ */
+
+.card-grid {
+    display:grid;
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(260px,1fr));
+
+    gap:20px;
+}
+
+.card {
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:16px;
+
+    padding:24px;
+
+    transition:.2s;
+}
+
+.card:hover {
+    transform:translateY(-3px);
+    box-shadow:0 12px 30px rgba(0,0,0,.07);
+}
+
+.card h3 {
+    margin-bottom:8px;
+}
+
+.card p {
+    color:var(--muted);
+}
+
+/* ================================
+   UNIT CARDS
+================================ */
+
+.unit-card {
+    cursor:pointer;
+}
+
+.unit-number {
+    width:42px;
+    height:42px;
+
+    border-radius:11px;
+
+    background:var(--primary-light);
+    color:var(--primary);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-weight:800;
+
+    margin-bottom:15px;
+}
+
+.unit-progress {
+    margin-top:15px;
+}
+
+.unit-progress .progress-bar {
+    height:7px;
+}
+
+/* ================================
+   LESSON
+================================ */
+
+.lesson-layout {
+    display:grid;
+
+    grid-template-columns:260px 1fr;
+
+    gap:25px;
+}
+
+.lesson-list {
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:15px;
+
+    padding:15px;
+
+    height:max-content;
+
+    position:sticky;
+    top:95px;
+}
+
+.lesson-list h3 {
+    padding:10px;
+    margin-bottom:10px;
+}
+
+.lesson-link {
+    display:block;
+
+    width:100%;
+
+    border:none;
+    background:transparent;
+
+    text-align:left;
+
+    padding:11px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    color:var(--text);
+}
+
+.lesson-link:hover {
+    background:var(--primary-light);
+    color:var(--primary);
+}
+
+.lesson-link.current {
+    background:var(--primary-light);
+    color:var(--primary);
+    font-weight:700;
+}
+
+.lesson-content {
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:18px;
+
+    padding:35px;
+}
+
+.lesson-content h1 {
+    font-size:2.3rem;
+    margin-bottom:10px;
+}
+
+.lesson-content h2 {
+    margin-top:35px;
+    margin-bottom:12px;
+}
+
+.lesson-content p {
+    margin-bottom:15px;
+}
+
+.explanation {
+    font-size:1.08rem;
+    color:#334155;
+}
+
+.formula {
+    padding:20px;
+
+    background:var(--primary-light);
+
+    border-left:5px solid var(--primary);
+
+    border-radius:8px;
+
+    font-size:1.25rem;
+
+    font-weight:700;
+
+    margin:20px 0;
+}
+
+.example {
+    background:#f8fafc;
+
+    border:1px solid var(--border);
+
+    border-radius:12px;
+
+    padding:20px;
+
+    margin:15px 0;
+}
+
+.example-step {
+    padding:7px 0;
+}
+
+.lesson-actions {
+    margin-top:35px;
+
+    display:flex;
+    justify-content:space-between;
+}
+
+/* ================================
+   BUTTONS
+================================ */
+
+.btn {
+    border:none;
+
+    padding:12px 19px;
+
+    border-radius:9px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.btn-primary {
+    background:var(--primary);
+    color:white;
+}
+
+.btn-primary:hover {
+    background:var(--primary-dark);
+}
+
+.btn-secondary {
+    background:var(--bg);
+    color:var(--text);
+
+    border:1px solid var(--border);
+}
+
+.btn-green {
+    background:var(--green);
+    color:white;
+}
+
+.btn-purple {
+    background:var(--purple);
+    color:white;
+}
+
+/* ================================
+   PRACTICE
+================================ */
+
+.practice-box {
+    max-width:850px;
+    margin:auto;
+}
+
+.question {
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:17px;
+
+    padding:30px;
+
+    margin-bottom:20px;
+}
+
+.question-number {
+    color:var(--primary);
+    font-weight:800;
+
+    margin-bottom:10px;
+}
+
+.question-text {
+    font-size:1.2rem;
+    font-weight:700;
+
+    margin-bottom:20px;
+}
+
+.answer-input {
+    width:100%;
+
+    padding:14px;
+
+    border:1px solid var(--border);
+
+    border-radius:9px;
+
+    font-size:1rem;
+
+    background:var(--bg);
+    color:var(--text);
+
+    margin-bottom:12px;
+}
+
+.feedback {
+    padding:14px;
+
+    border-radius:9px;
+
+    margin-top:10px;
+
+    display:none;
+}
+
+.feedback.correct {
+    display:block;
+
+    background:#f0fdf4;
+    color:#166534;
+}
+
+.feedback.incorrect {
+    display:block;
+
+    background:#fef2f2;
+    color:#991b1b;
+}
+
+.hint {
+    margin-top:12px;
+
+    color:var(--primary);
+
+    cursor:pointer;
+
+    font-weight:600;
+}
+
+.hint-content {
+    display:none;
+
+    padding:12px;
+
+    background:var(--primary-light);
+
+    border-radius:8px;
+
+    margin-top:8px;
+}
+
+/* ================================
+   QUIZ
+================================ */
+
+.quiz-container {
+    max-width:850px;
+    margin:auto;
+}
+
+.quiz-card {
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:17px;
+
+    padding:30px;
+
+    margin-bottom:20px;
+}
+
+.option {
+    display:block;
+
+    padding:14px;
+
+    margin:8px 0;
+
+    border:1px solid var(--border);
+
+    border-radius:9px;
+
+    cursor:pointer;
+}
+
+.option:hover {
+    background:var(--primary-light);
+}
+
+.quiz-result {
+    display:none;
+
+    padding:25px;
+
+    border-radius:12px;
+
+    background:#eff6ff;
+
+    margin-top:20px;
+}
+
+/* ================================
+   BADGES
+================================ */
+
+.badge-grid {
+    display:grid;
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(200px,1fr));
+
+    gap:20px;
+}
+
+.badge {
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    padding:25px;
+
+    border-radius:15px;
+
+    text-align:center;
+
+    opacity:.45;
+}
+
+.badge.unlocked {
+    opacity:1;
+
+    border-color:#facc15;
+}
+
+.badge-icon {
+    font-size:3rem;
+
+    margin-bottom:10px;
+}
+
+/* ================================
+   CALCULATOR
+================================ */
+
+.calculator {
+    max-width:400px;
+
+    margin:auto;
+
+    background:#111827;
+
+    padding:20px;
+
+    border-radius:18px;
+}
+
+.calc-display {
+    width:100%;
+
+    height:70px;
+
+    margin-bottom:15px;
+
+    background:#1f2937;
+
+    border:none;
+
+    border-radius:10px;
+
+    color:white;
+
+    font-size:1.8rem;
+
+    padding:15px;
+
+    text-align:right;
+}
+
+.calc-grid {
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:8px;
+}
+
+.calc-btn {
+    padding:17px;
+
+    border:none;
+
+    border-radius:9px;
+
+    cursor:pointer;
+
+    font-size:1rem;
+}
+
+.calc-btn:hover {
+    opacity:.8;
+}
+
+/* ================================
+   FORMULAS
+================================ */
+
+.formula-table {
+    width:100%;
+
+    border-collapse:collapse;
+
+    background:var(--card);
+
+    border-radius:15px;
+
+    overflow:hidden;
+}
+
+.formula-table th,
+.formula-table td {
+    padding:15px;
+
+    border-bottom:1px solid var(--border);
+
+    text-align:left;
+}
+
+.formula-table th {
+    background:var(--primary-light);
+}
+
+/* ================================
+   SEARCH
+================================ */
+
+.search-results {
+    margin-top:15px;
+}
+
+.search-result {
+    background:var(--card);
+
+    padding:15px;
+
+    border:1px solid var(--border);
+
+    border-radius:9px;
+
+    margin-bottom:8px;
+
+    cursor:pointer;
+}
+
+/* ================================
+   DARK MODE
+================================ */
+
+body.dark {
+    --bg:#0f172a;
+    --card:#172033;
+    --text:#f1f5f9;
+    --muted:#94a3b8;
+    --border:#334155;
+
+    --primary-light:#172554;
+}
+
+body.dark .welcome {
+    background:
+        linear-gradient(
+            135deg,
+            #172554,
+            #2e1065
+        );
+}
+
+body.dark .example {
+    background:#111827;
+}
+
+body.dark .explanation {
+    color:#cbd5e1;
+}
+
+/* ================================
+   MOBILE
+================================ */
+
+.mobile-menu {
+    display:none;
+
+    border:none;
+    background:none;
+
+    font-size:1.6rem;
+
+    cursor:pointer;
+
+    color:var(--text);
+}
+
+@media(max-width:900px) {
+
+    .sidebar {
+        transform:translateX(-100%);
+        transition:.25s;
+    }
+
+    .sidebar.open {
+        transform:translateX(0);
+    }
+
+    .main {
+        margin-left:0;
+    }
+
+    .mobile-menu {
+        display:block;
+    }
+
+    .topbar {
+        padding:0 18px;
+    }
+
+    .search {
+        width:50%;
+    }
+
+    .lesson-layout {
+        grid-template-columns:1fr;
+    }
+
+    .lesson-list {
+        position:static;
+    }
+
+    .page {
+        padding:25px 18px;
+    }
+}
+
+@media(max-width:600px) {
+
+    .topbar {
+        gap:10px;
+    }
+
+    .search {
+        width:100%;
+    }
+
+    .profile {
+        display:none;
+    }
+
+    .page-title h1 {
+        font-size:1.9rem;
+    }
+
+    .welcome h1 {
+        font-size:1.8rem;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- =====================================
+     SIDEBAR
+===================================== -->
+
+<aside class="sidebar" id="sidebar">
+
+    <div class="logo">
+        Math<span>Path</span> 9
+    </div>
+
+    <div class="sidebar-nav">
+
+        <button class="sidebar-button active"
+                onclick="showPage('dashboard')">
+            🏠 Dashboard
+        </button>
+
+        <button class="sidebar-button"
+                onclick="showPage('course')">
+            📚 Course
+        </button>
+
+        <button class="sidebar-button"
+                onclick="showPage('practice')">
+            ✏️ Practice
+        </button>
+
+        <button class="sidebar-button"
+                onclick="showPage('quiz')">
+            📝 Quizzes
+        </button>
+
+        <button class="sidebar-button"
+                onclick="showPage('badges')">
+            🏆 Achievements
+        </button>
+
+        <button class="sidebar-button"
+                onclick="showPage('formulas')">
+            📐 Formula Sheet
+        </button>
+
+        <button class="sidebar-button"
+                onclick="showPage('calculator')">
+            🧮 Calculator
+        </button>
+</div>
+
+    <div class="sidebar-bottom">
+
+        <button class="theme-button"
+                onclick="toggleDarkMode()">
+            🌙 Toggle Dark Mode
+        </button>
+
+    </div>
+
+</aside>
+
+
+<!-- =====================================
+     MAIN
+===================================== -->
+
+<main class="main">
+
+    <header class="topbar">
+
+        <button class="mobile-menu"
+                onclick="toggleSidebar()">
+            ☰
+        </button>
+
+        <input
+            class="search"
+            id="searchBox"
+            placeholder="Search lessons..."
+            oninput="searchLessons()"
+        >
+
+        <div class="profile">
+
+            <div>
+                <strong>Math Student</strong><br>
+                <small id="xpDisplay">0 XP</small>
+            </div>
+
+            <div class="avatar">
+                M
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- =================================
+         DASHBOARD
+    ================================= -->
+
+    <div id="dashboard" class="page">
+
+        <div class="welcome">
+
+            <h1>Welcome to MathPath 9 👋</h1>
+
+            <p>
+                Learn advanced Grade 9 mathematics through lessons,
+                examples, practice problems, quizzes, and challenges.
+                Work at your own pace and build your skills step by step.
+            </p>
+
+            <br>
+
+            <button class="btn btn-primary"
+                    onclick="showPage('course')">
+                Continue Learning →
+            </button>
+
+        </div>
+
+
+        <div class="dashboard-grid">
+
+            <div class="stat-card">
+
+                <div class="stat-icon">⭐</div>
+
+                <div class="stat-number"
+                     id="dashXP">
+                    0
+                </div>
+
+                <div class="stat-label">
+                    Total XP
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">🔥</div>
+
+                <div class="stat-number"
+                     id="dashStreak">
+                    0
+                </div>
+
+                <div class="stat-label">
+                    Day Streak
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">📚</div>
+
+                <div class="stat-number"
+                     id="dashLessons">
+                    0
+                </div>
+
+                <div class="stat-label">
+                    Lessons Completed
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">🏆</div>
+
+                <div class="stat-number"
+                     id="dashBadges">
+                    0
+                </div>
+
+                <div class="stat-label">
+                    Badges Earned
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="progress-card">
+
+            <div class="progress-header">
+
+                <strong>Course Progress</strong>
+
+                <span id="coursePercent">
+                    0%
+                </span>
+
+            </div>
+
+            <div class="progress-bar">
+
+                <div
+                    class="progress-fill"
+                    id="courseProgress">
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="page-title">
+
+            <h2>Quick Start</h2>
+
+            <p>
+                Choose what you want to do next.
+            </p>
+
+        </div>
+
+
+        <div class="card-grid">
+
+            <div class="card"
+                 onclick="showPage('course')"
+                 style="cursor:pointer">
+
+                <h3>📖 Learn a Lesson</h3>
+
+                <p>
+                    Explore concepts with explanations
+                    and worked examples.
+                </p>
+
+            </div>
+
+
+            <div class="card"
+                 onclick="showPage('practice')"
+                 style="cursor:pointer">
+
+                <h3>✏️ Practice</h3>
+
+                <p>
+                    Get a randomly generated math problem
+                    and check your answer.
+                </p>
+
+            </div>
+
+
+            <div class="card"
+                 onclick="showPage('quiz')"
+                 style="cursor:pointer">
+
+                <h3>📝 Take a Quiz</h3>
+
+                <p>
+                    Test yourself and earn XP.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================
+         COURSE
+    ================================= -->
+
+    <div id="course" class="page" style="display:none">
+
+        <div class="page-title">
+
+            <h1>Grade 9 Advanced Mathematics</h1>
+
+            <p>
+                Select a unit to explore its lessons.
+            </p>
+
+        </div>
+
+        <div class="card-grid"
+             id="unitGrid">
+        </div>
+
+    </div>
+
+
+    <!-- =================================
+         LESSON
+    ================================= -->
+
+    <div id="lessonPage"
+         class="page"
+         style="display:none">
+
+        <div class="lesson-layout">
+
+            <div class="lesson-list">
+
+                <h3 id="lessonUnitTitle">
+                    Lessons
+                </h3>
+
+                <div id="lessonLinks">
+                </div>
+
+            </div>
+
+
+            <div class="lesson-content">
+
+                <div id="lessonContent">
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================
+         PRACTICE
+    ================================= -->
+
+    <div id="practice"
+         class="page"
+         style="display:none">
+
+        <div class="page-title">
+
+            <h1>Practice</h1>
+
+            <p>
+                Practice makes progress. Generate a new
+                question whenever you're ready.
+            </p>
+
+        </div>
+
+        <div class="practice-box">
+
+            <div class="question">
+
+                <div class="question-number">
+                    Random Practice Problem
+                </div>
+
+                <div
+                    class="question-text"
+                    id="practiceQuestion">
+                </div>
+
+                <input
+                    id="practiceAnswer"
+                    class="answer-input"
+                    placeholder="Type your answer..."
+                >
+
+                <button
+                    class="btn btn-primary"
+                    onclick="checkPractice()">
+                    Check Answer
+                </button>
+
+                <button
+                    class="btn btn-secondary"
+                    onclick="generatePractice()">
+                    New Question
+                </button>
+
+                <div
+                    class="feedback"
+                    id="practiceFeedback">
+                </div>
+
+                <div class="hint"
+                     onclick="toggleHint()">
+                    💡 Show Hint
+                </div>
+
+                <div
+                    class="hint-content"
+                    id="practiceHint">
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================
+         QUIZ
+    ================================= -->
+
+    <div id="quiz"
+         class="page"
+         style="display:none">
+
+        <div class="page-title">
+
+            <h1>Math Quiz</h1>
+
+            <p>
+                Answer the questions and see your score.
+            </p>
+
+        </div>
+
+        <div class="quiz-container">
+
+            <div id="quizQuestions">
+            </div>
+
+            <button
+                class="btn btn-primary"
+                onclick="submitQuiz()">
+                Submit Quiz
+            </button>
+
+            <button
+                class="btn btn-secondary"
+                onclick="generateQuiz()">
+                New Quiz
+            </button>
+
+            <div
+                class="quiz-result"
+                id="quizResult">
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================
+         BADGES
+    ================================= -->
+
+    <div id="badges"
+         class="page"
+         style="display:none">
+
+        <div class="page-title">
+
+            <h1>Achievements</h1>
+
+            <p>
+                Keep learning to unlock badges.
+            </p>
+
+        </div>
+
+        <div class="badge-grid"
+             id="badgeGrid">
+        </div>
+
+    </div>
+
+
+    <!-- =================================
+         FORMULAS
+    ================================= -->
+
+    <div id="formulas"
+         class="page"
+         style="display:none">
+
+        <div class="page-title">
+
+            <h1>Formula Sheet</h1>
+
+            <p>
+                Important formulas and relationships.
+            </p>
+
+        </div>
+
+        <table class="formula-table">
+
+            <thead>
+                <tr>
+                    <th>Topic</th>
+                    <th>Formula</th>
+                    <th>Meaning</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <tr>
+                    <td>Slope</td>
+                    <td>m = (y₂ − y₁)/(x₂ − x₁)</td>
+                    <td>Rate of change</td>
+                </tr>
+
+                <tr>
+                    <td>Linear Function</td>
+                    <td>y = mx + b</td>
+                    <td>Slope-intercept form</td>
+                </tr>
+
+                <tr>
+                    <td>Distance</td>
+                    <td>d = √((x₂−x₁)² + (y₂−y₁)²)</td>
+                    <td>Distance between points</td>
+                </tr>
+
+                <tr>
+                    <td>Pythagorean Theorem</td>
+                    <td>a² + b² = c²</td>
+                    <td>Right triangles</td>
+                </tr>
+
+                <tr>
+                    <td>Rectangle Area</td>
+                    <td>A = lw</td>
+                    <td>Area of a rectangle</td>
+                </tr>
+
+                <tr>
+                    <td>Triangle Area</td>
+                    <td>A = ½bh</td>
+                    <td>Area of a triangle</td>
+                </tr>
+
+                <tr>
+                    <td>Circle Area</td>
+                    <td>A = πr²</td>
+                    <td>Area of a circle</td>
+                </tr>
+
+                <tr>
+                    <td>Circle Circumference</td>
+                    <td>C = 2πr</td>
+                    <td>Circumference</td>
+                </tr>
+
+                <tr>
+                    <td>Probability</td>
+                    <td>P(E) = favorable / total</td>
+                    <td>Probability of an event</td>
+                </tr>
+
+                <tr>
+                    <td>Simple Interest</td>
+                    <td>I = Prt</td>
+                    <td>Simple interest</td>
+                </tr>
+
+                <tr>
+                    <td>Quadratic</td>
+                    <td>y = ax² + bx + c</td>
+                    <td>Standard quadratic form</td>
+                </tr>
+
+                <tr>
+                    <td>Exponent Product</td>
+                    <td>xᵃ · xᵇ = xᵃ⁺ᵇ</td>
+                    <td>Product of powers</td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    <!-- =================================
+         CALCULATOR
+    ================================= -->
+
+    <div id="calculator"
+         class="page"
+         style="display:none">
+
+        <div class="page-title">
+
+            <h1>Calculator</h1>
+
+            <p>
+                A simple calculator for checking your work.
+            </p>
+
+        </div>
+
+        <div class="calculator">
+
+            <input
+                id="calcDisplay"
+                class="calc-display"
+                readonly
+            >
+
+            <div class="calc-grid">
+
+                <button class="calc-btn"
+                        onclick="clearCalc()">
+                    C
+                </button>
+
+                <button class="calc-btn"
+                        onclick="backspace()">
+                    ←
+                </button>
+
+                <button class="calc-btn"
+                        onclick="addCalc('(')">
+                    (
+                </button>
+
+                <button class="calc-btn"
+                        onclick="addCalc(')')">
+                    )
+                </button>
+
+                <button class="calc-btn"
+                        onclick="addCalc('7')">
+                    7
+                </button>
+
+                <button class="calc-btn"
+                        onclick="addCalc('8')">
+                    8
+                </button>
+
+                <button class="calc-btn"
+                        onclick="addCalc('9')">
+                    9
+                </button>
+
+                <button class="calc-btn"
+                        onclick="addCalc('/')">
+                    ÷
+                </button>
+
+                <button class="calc-btn"
+                        onclick="addCalc('4')">
+                    4
+                </button>
+
+                <button class="calc-btn"
+                        onclick="addCalc('5')">
+                    5
+                </button>
+
+                <button class="calc-btn"
+                        onclick="addCalc('6')">
+                    6
+                </button>
+
+                <button class="calc-btn"
+                        onclick="addCalc('*')">
+                    ×
+                </button>
+
+                <button class="calc-btn"
+                        onclick="addCalc('1')">
+                    1
+                </button>
+
+                <button class="calc-btn"
+                        onclick="addCalc('2')">
+                    2
+                </button>
+
+                <button class="calc-btn"
+                        onclick="addCalc('3')">
+                    3
+                </button>
+
+                <button class="calc-btn"
+                        onclick="addCalc('-')">
+                    −
+                </button>
+
+                <button class="calc-btn"
+                        onclick="addCalc('0')">
+                    0
+                </button>
+
+                <button class="calc-btn"
+                        onclick="addCalc('.')">
+                    .
+                </button>
+
+                <button class="calc-btn"
+                        onclick="calculate()">
+                    =
+                </button>
+
+                <button class="calc-btn"
+                        onclick="addCalc('+')">
+                    +
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<script>
+
+/* =========================================
+   DATA
+========================================= */
+
+const units = [
+
+{
+    id:1,
+    title:"Number Systems",
+    icon:"🔢",
+    description:"Real numbers, rational numbers, irrational numbers, and absolute value.",
+
+    lessons:[
+        {
+            title:"Real Numbers",
+            explanation:"Real numbers include every number that can be represented on the real number line. They include rational and irrational numbers.",
+            formula:"Real Numbers = Rational Numbers ∪ Irrational Numbers",
+            example:[
+                "Classify 5.",
+                "5 can be written as 5/1.",
+                "Therefore 5 is rational.",
+                "Every rational number is also a real number."
+            ]
+        },
+
+        {
+            title:"Rational & Irrational Numbers",
+            explanation:"A rational number can be written as a fraction of two integers with a nonzero denominator. Irrational numbers cannot be written in that form.",
+            formula:"Rational: a/b, where a and b are integers and b ≠ 0.",
+            example:[
+                "0.75 = 3/4, so it is rational.",
+                "√2 cannot be written as a ratio of integers.",
+                "Therefore √2 is irrational."
+            ]
+        },
+
+        {
+            title:"Absolute Value",
+            explanation:"Absolute value represents distance from zero on a number line, so it is never negative.",
+            formula:"|x| = distance between x and 0",
+            example:[
+                "|−7| = 7",
+                "|4| = 4",
+                "Both numbers are 7 or 4 units away from zero."
+            ]
+        },
+
+        {
+            title:"Intervals & Number Lines",
+            explanation:"Intervals describe sets of numbers using inequalities and interval notation.",
+            formula:"a < x < b represents all numbers between a and b.",
+            example:[
+                "x > 3 means every number greater than 3.",
+                "The endpoint 3 is not included.",
+                "This can be written as (3, ∞)."
+            ]
+        }
+    ]
+},
+
+{
+    id:2,
+    title:"Algebraic Expressions",
+    icon:"✏️",
+    description:"Variables, expressions, distributive property, and simplifying.",
+
+    lessons:[
+        {
+            title:"Variables & Constants",
+            explanation:"A variable represents a quantity that can change. A constant has a fixed value.",
+            formula:"Expression = terms combined using operations",
+            example:[
+                "In 4x + 7, x is the variable.",
+                "4 is the coefficient.",
+                "7 is the constant."
+            ]
+        },
+
+        {
+            title:"Combining Like Terms",
+            explanation:"Like terms contain the same variables raised to the same powers. Their coefficients can be combined.",
+            formula:"3x + 5x = 8x",
+            example:[
+                "Simplify 4x + 7 + 2x.",
+                "Combine 4x and 2x.",
+                "4x + 2x + 7 = 6x + 7."
+            ]
+        },
+
+        {
+            title:"Distributive Property",
+            explanation:"The distributive property allows multiplication across a sum or difference.",
+            formula:"a(b + c) = ab + ac",
+            example:[
+                "Simplify 3(x + 4).",
+                "Multiply 3 by x and 4.",
+                "3x + 12."
+            ]
+        },
+
+        {
+            title:"Evaluating Expressions",
+            explanation:"To evaluate an expression, substitute the given value for the variable and simplify.",
+            formula:"If x = 5, replace every x with 5.",
+            example:[
+                "Evaluate 2x + 3 when x = 5.",
+                "2(5) + 3 = 10 + 3.",
+                "Answer: 13."
+            ]
+        }
+    ]
+},
+
+{
+    id:3,
+    title:"Linear Equations",
+    icon:"⚖️",
+    description:"Solve one-variable and multi-step equations.",
+
+    lessons:[
+        {
+            title:"One-Step Equations",
+            explanation:"Use inverse operations to isolate the variable.",
+            formula:"Addition ↔ Subtraction; Multiplication ↔ Division",
+            example:[
+                "x + 7 = 15",
+                "Subtract 7 from both sides.",
+                "x = 8."
+            ]
+        },
+
+        {
+            title:"Multi-Step Equations",
+            explanation:"Simplify both sides, move variable terms together, then isolate the variable.",
+            formula:"Keep the equation balanced at every step.",
+            example:[
+                "3x + 5 = 20",
+                "Subtract 5: 3x = 15.",
+                "Divide by 3: x = 5."
+            ]
+        },
+
+        {
+            title:"Equations With Variables on Both Sides",
+            explanation:"Move variable terms to one side and constants to the other.",
+            formula:"Collect like terms before isolating the variable.",
+            example:[
+                "5x + 2 = 2x + 14",
+                "Subtract 2x: 3x + 2 = 14.",
+                "Subtract 2: 3x = 12.",
+                "x = 4."
+            ]
+        },
+
+        {
+            title:"Equations With Fractions",
+            explanation:"Multiplying every term by a common denominator can eliminate fractions.",
+            formula:"Multiply both sides by the least common denominator.",
+            example:[
+                "x/3 = 5",
+                "Multiply both sides by 3.",
+                "x = 15."
+            ]
+        }
+    ]
+},
+
+{
+    id:4,
+    title:"Inequalities",
+    icon:"↔️",
+    description:"Solve, graph, and interpret inequalities.",
+
+    lessons:[
+        {
+            title:"One-Step Inequalities",
+            explanation:"Solve inequalities using inverse operations. When multiplying or dividing by a negative, reverse the inequality sign.",
+            formula:"−x > a becomes x < −a",
+            example:[
+                "x + 4 > 9",
+                "Subtract 4.",
+                "x > 5."
+            ]
+        },
+
+        {
+            title:"Compound Inequalities",
+            explanation:"A compound inequality combines two inequality statements.",
+            formula:"a < x < b means x is between a and b.",
+            example:[
+                "2 < x ≤ 7",
+                "x is greater than 2.",
+                "x is less than or equal to 7."
+            ]
+        },
+
+        {
+            title:"Absolute Value Inequalities",
+            explanation:"Absolute value inequalities describe distances from zero.",
+            formula:"|x| < a means −a < x < a.",
+            example:[
+                "|x| < 4",
+                "x must be within 4 units of zero.",
+                "−4 < x < 4."
+            ]
+        }
+    ]
+},
+
+{
+    id:5,
+    title:"Functions",
+    icon:"ƒ",
+    description:"Function notation, domain, range, tables, and graphs.",
+
+    lessons:[
+        {
+            title:"What Is a Function?",
+            explanation:"A function assigns exactly one output to every input in its domain.",
+            formula:"Input → Function Rule → Output",
+            example:[
+                "f(x) = 2x + 1.",
+                "For x = 3:",
+                "f(3) = 2(3) + 1 = 7."
+            ]
+        },
+
+        {
+            title:"Function Notation",
+            explanation:"Function notation gives a compact way to describe the output of a function.",
+            formula:"f(x) = output",
+            example:[
+                "f(x) = x² + 2.",
+                "f(4) = 4² + 2.",
+                "f(4) = 18."
+            ]
+        },
+
+        {
+            title:"Domain & Range",
+            explanation:"The domain is the set of allowed inputs. The range is the set of resulting outputs.",
+            formula:"Domain → inputs; Range → outputs",
+            example:[
+                "For {(1,2),(2,4),(3,6)},",
+                "Domain = {1,2,3}.",
+                "Range = {2,4,6}."
+            ]
+        }
+    ]
+},
+
+{
+    id:6,
+    title:"Linear Functions",
+    icon:"📈",
+    description:"Slope, intercepts, graphing, and linear models.",
+
+    lessons:[
+        {
+            title:"Slope",
+            explanation:"Slope measures the rate at which y changes as x changes.",
+            formula:"m = (y₂ − y₁)/(x₂ − x₁)",
+            example:[
+                "Points (2,3) and (6,11).",
+                "m = (11−3)/(6−2).",
+                "m = 8/4 = 2."
+            ]
+        },
+
+        {
+            title:"Slope-Intercept Form",
+            explanation:"Slope-intercept form makes the slope and y-intercept easy to identify.",
+            formula:"y = mx + b",
+            example:[
+                "y = 4x − 7.",
+                "Slope = 4.",
+                "Y-intercept = −7."
+            ]
+        },
+
+        {
+            title:"Point-Slope Form",
+            explanation:"Point-slope form is useful when you know a point and the slope.",
+            formula:"y − y₁ = m(x − x₁)",
+            example:[
+                "Slope 3 through (2,5).",
+                "y − 5 = 3(x − 2)."
+            ]
+        },
+
+        {
+            title:"Linear Models",
+            explanation:"Linear equations can model situations with a constant rate of change.",
+            formula:"Change in y / Change in x = constant rate",
+            example:[
+                "A taxi charges a fixed starting fee plus a constant amount per kilometre.",
+                "This relationship can be represented by a linear equation."
+            ]
+        }
+    ]
+},
+
+{
+    id:7,
+    title:"Systems of Equations",
+    icon:"🔀",
+    description:"Solve systems using graphs, substitution, and elimination.",
+
+    lessons:[
+        {
+            title:"Graphing Systems",
+            explanation:"The solution to a system is the point where the graphs intersect.",
+            formula:"Solution = intersection of the equations",
+            example:[
+                "y = x + 1",
+                "y = −x + 5",
+                "Set them equal to find the intersection."
+            ]
+        },
+
+        {
+            title:"Substitution",
+            explanation:"Substitution replaces one variable using an equivalent expression from another equation.",
+            formula:"Replace a variable with its equivalent expression.",
+            example:[
+                "y = x + 2",
+                "2x + y = 11",
+                "Substitute x + 2 for y.",
+                "2x + x + 2 = 11."
+            ]
+        },
+
+        {
+            title:"Elimination",
+            explanation:"Elimination combines equations so that one variable cancels.",
+            formula:"Add or subtract equations to eliminate a variable.",
+            example:[
+                "x + y = 10",
+                "x − y = 2",
+                "Add the equations.",
+                "2x = 12, so x = 6."
+            ]
+        }
+    ]
+},
+
+{
+    id:8,
+    title:"Exponents & Polynomials",
+    icon:"x²",
+    description:"Exponent laws, scientific notation, and polynomial operations.",
+
+    lessons:[
+        {
+            title:"Exponent Rules",
+            explanation:"Exponent laws help simplify products, quotients, and powers.",
+            formula:"xᵃ · xᵇ = xᵃ⁺ᵇ",
+            example:[
+                "x³ · x⁵",
+                "Add the exponents.",
+                "x⁸."
+            ]
+        },
+
+        {
+            title:"Scientific Notation",
+            explanation:"Scientific notation represents very large or very small numbers efficiently.",
+            formula:"a × 10ⁿ, where 1 ≤ |a| < 10",
+            example:[
+                "450000 = 4.5 × 10⁵.",
+                "The decimal moved 5 places."
+            ]
+        },
+
+        {
+            title:"Adding Polynomials",
+            explanation:"Add corresponding like terms.",
+            formula:"(2x + 3) + (4x + 5) = 6x + 8",
+            example:[
+                "Combine x terms.",
+                "Combine constants.",
+                "Result: 6x + 8."
+            ]
+        },
+
+        {
+            title:"Multiplying Polynomials",
+            explanation:"Use the distributive property to multiply every term.",
+            formula:"(a+b)(c+d)=ac+ad+bc+bd",
+            example:[
+                "(x+2)(x+3)",
+                "x² + 3x + 2x + 6",
+                "x² + 5x + 6."
+            ]
+        }
+    ]
+},
+
+{
+    id:9,
+    title:"Quadratics",
+    icon:"∿",
+    description:"Quadratic functions, factoring, roots, and parabolas.",
+
+    lessons:[
+        {
+            title:"Quadratic Functions",
+            explanation:"Quadratic functions contain a squared variable and create a parabola when graphed.",
+            formula:"y = ax² + bx + c",
+            example:[
+                "y = x² + 3x + 2 is quadratic.",
+                "The highest exponent is 2."
+            ]
+        },
+
+        {
+            title:"Factoring Quadratics",
+            explanation:"Factoring rewrites a polynomial as a product of simpler expressions.",
+            formula:"x² + bx + c = (x+p)(x+q)",
+            example:[
+                "x² + 5x + 6",
+                "2 and 3 multiply to 6 and add to 5.",
+                "(x+2)(x+3)."
+            ]
+        },
+
+        {
+            title:"Quadratic Roots",
+            explanation:"Roots are values of x that make the quadratic equal to zero.",
+            formula:"f(x) = 0",
+            example:[
+                "(x−2)(x+4)=0",
+                "x−2=0 or x+4=0.",
+                "x=2 or x=−4."
+            ]
+        },
+
+        {
+            title:"Parabolas",
+            explanation:"A quadratic graph is a parabola with a vertex and an axis of symmetry.",
+            formula:"Axis of symmetry: x = −b/(2a)",
+            example:[
+                "For y = x², the vertex is (0,0).",
+                "The parabola opens upward because a > 0."
+            ]
+        }
+    ]
+},
+
+{
+    id:10,
+    title:"Geometry",
+    icon:"📐",
+    description:"Angles, triangles, similarity, circles, area, and volume.",
+
+    lessons:[
+        {
+            title:"Angle Relationships",
+            explanation:"Angles can be complementary, supplementary, vertical, or formed by intersecting lines.",
+            formula:"Complementary = 90°; Supplementary = 180°",
+            example:[
+                "An angle measures 35°.",
+                "Its complement is 90 − 35.",
+                "The complement is 55°."
+            ]
+        },
+
+        {
+            title:"Triangle Geometry",
+            explanation:"The interior angles of every triangle have a sum of 180°.",
+            formula:"A + B + C = 180°",
+            example:[
+                "Angles are 50° and 60°.",
+                "Third angle = 180 − 50 − 60.",
+                "Third angle = 70°."
+            ]
+        },
+
+        {
+            title:"Pythagorean Theorem",
+            explanation:"For a right triangle, the square of the hypotenuse equals the sum of the squares of the legs.",
+            formula:"a² + b² = c²",
+            example:[
+                "Legs are 3 and 4.",
+                "9 + 16 = 25.",
+                "c = 5."
+            ]
+        },
+
+        {
+            title:"Circles",
+            explanation:"The radius is the distance from the center to the circle. The diameter is twice the radius.",
+            formula:"A = πr² and C = 2πr",
+            example:[
+                "If r = 3:",
+                "A = π(3²).",
+                "A = 9π square units."
+            ]
+        }
+    ]
+},
+
+{
+    id:11,
+    title:"Transformations",
+    icon:"🔄",
+    description:"Translations, reflections, rotations, and dilations.",
+
+    lessons:[
+        {
+            title:"Translations",
+            explanation:"A translation slides every point of a figure the same distance in the same direction.",
+            formula:"(x,y) → (x+a,y+b)",
+            example:[
+                "Move (2,3) four units right.",
+                "x becomes 6.",
+                "New point: (6,3)."
+            ]
+        },
+
+        {
+            title:"Reflections",
+            explanation:"A reflection flips a figure over a line of reflection.",
+            formula:"Over x-axis: (x,y) → (x,−y)",
+            example:[
+                "Reflect (3,4) over the x-axis.",
+                "The x-coordinate stays the same.",
+                "Result: (3,−4)."
+            ]
+        },
+
+        {
+            title:"Rotations",
+            explanation:"Rotations turn figures around a fixed center.",
+            formula:"90° counterclockwise: (x,y) → (−y,x)",
+            example:[
+                "Rotate (2,1) 90° counterclockwise.",
+                "Result: (−1,2)."
+            ]
+        },
+
+        {
+            title:"Dilations",
+            explanation:"A dilation changes the size of a figure using a scale factor.",
+            formula:"(x,y) → (kx,ky)",
+            example:[
+                "Scale factor 2.",
+                "Point (3,4) becomes (6,8)."
+            ]
+        }
+    ]
+},
+
+{
+    id:12,
+    title:"Statistics & Probability",
+    icon:"📊",
+    description:"Data analysis, probability, distributions, and statistical reasoning.",
+
+    lessons:[
+        {
+            title:"Mean, Median & Mode",
+            explanation:"Measures of center describe a typical value in a dataset.",
+            formula:"Mean = sum of values ÷ number of values",
+            example:[
+                "Data: 2, 4, 6.",
+                "Mean = (2+4+6)/3.",
+                "Mean = 4."
+            ]
+        },
+
+        {
+            title:"Range & Spread",
+            explanation:"Measures of spread describe how much data values vary.",
+            formula:"Range = maximum − minimum",
+            example:[
+                "Data: 3, 5, 9, 12.",
+                "Range = 12 − 3.",
+                "Range = 9."
+            ]
+        },
+
+        {
+            title:"Basic Probability",
+            explanation:"Probability measures how likely an event is.",
+            formula:"P(E) = favorable outcomes ÷ total outcomes",
+            example:[
+                "A fair die has six outcomes.",
+                "There are three even outcomes.",
+                "P(even) = 3/6 = 1/2."
+            ]
+        },
+
+        {
+            title:"Compound Probability",
+            explanation:"Compound events involve two or more events.",
+            formula:"For independent events: P(A and B)=P(A)×P(B)",
+            example:[
+                "Probability of heads on a fair coin is 1/2.",
+                "Probability of heads twice is:",
+                "1/2 × 1/2 = 1/4."
+            ]
+        }
+    ]
+}
+
+];
+
+
+/* =========================================
+   STATE
+========================================= */
+
+let state = JSON.parse(
+    localStorage.getItem("mathPathState")
+) || {
+
+    xp:0,
+
+    lessonsCompleted:[],
+
+    badges:[],
+
+    streak:0,
+
+    lastVisit:null,
+
+    dark:false
+};
+
+
+/* =========================================
+   SAVE
+========================================= */
+
+function saveState() {
+
+    localStorage.setItem(
+        "mathPathState",
+        JSON.stringify(state)
+    );
+
+    updateDashboard();
+}
+
+
+/* =========================================
+   XP
+========================================= */
+
+function addXP(amount) {
+
+    state.xp += amount;
+
+    checkBadges();
+
+    saveState();
+
+}
+
+
+/* =========================================
+   NAVIGATION
+========================================= */
+
+function showPage(page) {
+
+    const pages = [
+        "dashboard",
+        "course",
+        "practice",
+        "quiz",
+        "badges",
+        "formulas",
+        "calculator",
+        "lessonPage"
+    ];
+
+    pages.forEach(id => {
+
+        const element =
+            document.getElementById(id);
+
+        if(element) {
+            element.style.display =
+                id === page ? "block" : "none";
+        }
+
+    });
+
+
+    if(page === "course") {
+        renderUnits();
+    }
+
+    if(page === "practice") {
+        generatePractice();
+    }
+
+    if(page === "quiz") {
+        generateQuiz();
+    }
+
+    if(page === "badges") {
+        renderBadges();
+    }
+
+    updateDashboard();
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+/* =========================================
+   SIDEBAR
+========================================= */
+
+function toggleSidebar() {
+
+    document
+        .getElementById("sidebar")
+        .classList.toggle("open");
+
+}
+
+
+/* =========================================
+   RENDER UNITS
+========================================= */
+
+function renderUnits() {
+
+    const grid =
+        document.getElementById("unitGrid");
+
+    grid.innerHTML = "";
+
+    units.forEach(unit => {
+
+        const completed =
+            unit.lessons.filter(
+                (_,index) =>
+                    state.lessonsCompleted.includes(
+                        unit.id + "-" + index
+                    )
+            ).length;
+
+        const percentage =
+            Math.round(
+                completed /
+                unit.lessons.length *
+                100
+            );
+
+        const card =
+            document.createElement("div");
+
+        card.className =
+            "card unit-card";
+
+        card.onclick =
+            () => openUnit(unit.id);
+
+        card.innerHTML = `
+
+            <div class="unit-number">
+                ${unit.icon}
+            </div>
+
+            <h3>
+                Unit ${unit.id}: ${unit.title}
+            </h3>
+
+            <p>
+                ${unit.description}
+            </p>
+
+            <div class="unit-progress">
+
+                <small>
+                    ${completed}/${unit.lessons.length}
+                    lessons completed
+                </small>
+
+                <div class="progress-bar">
+
+                    <div
+                        class="progress-fill"
+                        style="width:${percentage}%">
+                    </div>
+
+                </div>
+
+            </div>
+
+        `;
+
+        grid.appendChild(card);
+
+    });
+
+}
+
+
+/* =========================================
+   OPEN UNIT
+========================================= */
+
+function openUnit(unitId) {
+
+    const unit =
+        units.find(u => u.id === unitId);
+
+    document.getElementById(
+        "lessonUnitTitle"
+    ).textContent =
+        "Unit " + unit.id;
+
+
+    const links =
+        document.getElementById(
+            "lessonLinks"
+        );
+
+    links.innerHTML = "";
+
+
+    unit.lessons.forEach(
+        (lesson,index) => {
+
+            const button =
+                document.createElement("button");
+
+            button.className =
+                "lesson-link";
+
+            button.textContent =
+                (index+1) + ". " + lesson.title;
+
+            button.onclick =
+                () => openLesson(unitId,index);
+
+            links.appendChild(button);
+
+        }
+    );
+
+
+    showPage("lessonPage");
+
+    openLesson(unitId,0);
+
+}
+
+
+/* =========================================
+   OPEN LESSON
+========================================= */
+
+function openLesson(unitId,index) {
+
+    const unit =
+        units.find(u => u.id === unitId);
+
+    const lesson =
+        unit.lessons[index];
+
+
+    document.getElementById(
+        "lessonUnitTitle"
+    ).textContent =
+        "Unit " + unit.id;
+
+
+    const links =
+        document.getElementById(
+            "lessonLinks"
+        );
+
+    links.innerHTML = "";
+
+
+    unit.lessons.forEach(
+        (item,i) => {
+
+            const button =
+                document.createElement("button");
+
+            button.className =
+                "lesson-link " +
+                (i === index
+                    ? "current"
+                    : "");
+
+            button.textContent =
+                (i+1) + ". " + item.title;
+
+            button.onclick =
+                () => openLesson(unitId,i);
+
+            links.appendChild(button);
+
+        }
+    );
+
+
+    const content =
+        document.getElementById(
+            "lessonContent"
+        );
+
+
+    content.innerHTML = `
+
+        <h1>
+            ${lesson.title}
+        </h1>
+
+        <p class="explanation">
+            ${lesson.explanation}
+        </p>
+
+        <h2>
+            Key Idea
+        </h2>
+
+        <div class="formula">
+            ${lesson.formula}
+        </div>
+
+        <h2>
+            Worked Example
+        </h2>
+
+        <div class="example">
+
+            ${lesson.example.map(
+                step =>
+                `<div class="example-step">
+                    ${step}
+                </div>`
+            ).join("")}
+
+        </div>
+
+        <h2>
+            Try It Yourself
+        </h2>
+
+        <p>
+            After studying this lesson, head to Practice
+            and test your understanding.
+        </p>
+
+        <button
+            class="btn btn-primary"
+            onclick="showPage('practice')">
+            Practice This Topic
+        </button>
+
+        <button
+            class="btn btn-green"
+            onclick="completeLesson(${unitId},${index})">
+            ✓ Mark Lesson Complete
+        </button>
+
+        <div class="lesson-actions">
+
+            ${
+                index > 0
+                ?
+                `<button
+                    class="btn btn-secondary"
+                    onclick="openLesson(${unitId},${index-1})">
+                    ← Previous
+                </button>`
+                :
+                `<span></span>`
+            }
+
+            ${
+                index < unit.lessons.length-1
+                ?
+                `<button
+                    class="btn btn-primary"
+                    onclick="openLesson(${unitId},${index+1})">
+                    Next →
+                </button>`
+                :
+                `<button
+                    class="btn btn-primary"
+                    onclick="showPage('course')">
+                    Finish Unit →
+                </button>`
+            }
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================
+   COMPLETE LESSON
+========================================= */
+
+function completeLesson(unitId,index) {
+
+    const key =
+        unitId + "-" + index;
+
+    if(
+        !state.lessonsCompleted.includes(key)
+    ) {
+
+        state.lessonsCompleted.push(key);
+
+        addXP(25);
+
+        alert(
+            "Lesson completed! +25 XP ⭐"
+        );
+
+    } else {
+
+        alert(
+            "You've already completed this lesson."
+        );
+
+    }
+
+    saveState();
+
+}
+
+
+/* =========================================
+   PRACTICE QUESTION GENERATOR
+========================================= */
+
+let currentPractice = null;
+
+
+function randomInt(min,max) {
+
+    return Math.floor(
+        Math.random() *
+        (max-min+1)
+    ) + min;
+
+}
+
+
+function generatePractice() {
+
+    const type =
+        randomInt(1,8);
+
+    let q;
+
+    if(type === 1) {
+
+        const x =
+            randomInt(2,12);
+
+        const b =
+            randomInt(1,15);
+
+        const result =
+            x + b;
+
+        q = {
+
+            question:
+                `Solve for x: x + ${b} = ${result}`,
+
+            answer:String(x),
+
+            hint:
+                "Use the inverse operation to isolate x.",
+
+            explanation:
+                `Subtract ${b} from both sides.`
+        };
+
+    }
+
+
+    else if(type === 2) {
+
+        const x =
+            randomInt(2,10);
+
+        const a =
+            randomInt(2,8);
+
+        const b =
+            randomInt(1,10);
+
+        const result =
+            a*x+b;
+
+        q = {
+
+            question:
+                `Solve for x: ${a}x + ${b} = ${result}`,
+
+            answer:String(x),
+
+            hint:
+                "Undo the addition first, then undo the multiplication.",
+
+            explanation:
+                `Subtract ${b}, then divide by ${a}.`
+        };
+
+    }
+
+
+    else if(type === 3) {
+
+        const x1 =
+            randomInt(1,6);
+
+        const y1 =
+            randomInt(1,8);
+
+        const x2 =
+            x1 + randomInt(1,6);
+
+        const y2 =
+            y1 + randomInt(2,12);
+
+        const slope =
+            (y2-y1)/(x2-x1);
+
+        q = {
+
+            question:
+                `Find the slope through (${x1}, ${y1}) and (${x2}, ${y2}).`,
+
+            answer:String(slope),
+
+            hint:
+                "Use change in y divided by change in x.",
+
+            explanation:
+                `m = (${y2} − ${y1})/(${x2} − ${x1}).`
+        };
+
+    }
+
+
+    else if(type === 4) {
+
+        const a =
+            randomInt(2,9);
+
+        const b =
+            randomInt(2,9);
+
+        q = {
+
+            question:
+                `Simplify: ${a}x + ${b}x`,
+
+            answer:String(a+b) + "x",
+
+            hint:
+                "These are like terms.",
+
+            explanation:
+                `Add the coefficients: ${a} + ${b} = ${a+b}.`
+        };
+
+    }
+
+
+    else if(type === 5) {
+
+        const side =
+            randomInt(3,12);
+
+        q = {
+
+            question:
+                `A square has side length ${side}. What is its area?`,
+
+            answer:String(side*side),
+
+            hint:
+                "Area of a square is side × side.",
+
+            explanation:
+                `${side} × ${side} = ${side*side}.`
+        };
+
+    }
+
+
+    else if(type === 6) {
+
+        const red =
+            randomInt(1,9);
+
+        const blue =
+            randomInt(1,9);
+
+        q = {
+
+            question:
+                `A bag contains ${red} red balls and ${blue} blue balls. What is the probability of choosing a red ball? Give your answer as a fraction.`,
+
+            answer:
+                `${red}/${red+blue}`,
+
+            hint:
+                "Probability is favorable outcomes divided by total outcomes.",
+
+            explanation:
+                `There are ${red} favorable outcomes and ${red+blue} total outcomes.`
+        };
+
+    }
+
+
+    else if(type === 7) {
+
+        const a =
+            randomInt(2,5);
+
+        const exponent =
+            randomInt(2,4);
+
+        const result =
+            Math.pow(a,exponent);
+
+        q = {
+
+            question:
+                `Evaluate ${a}^${exponent}.`,
+
+            answer:String(result),
+
+            hint:
+                "An exponent tells you how many times to multiply the base by itself.",
+
+            explanation:
+                `${a} multiplied by itself ${exponent} times equals ${result}.`
+        };
+
+    }
+
+
+    else {
+
+        const a =
+            randomInt(3,10);
+
+        const b =
+            randomInt(3,10);
+
+        const c =
+            Math.sqrt(
+                a*a+b*b
+            );
+
+        if(Number.isInteger(c)) {
+
+            q = {
+
+                question:
+                    `A right triangle has legs ${a} and ${b}. Find the hypotenuse.`,
+
+                answer:String(c),
+
+                hint:
+                    "Use the Pythagorean theorem.",
+
+                explanation:
+                    `${a}² + ${b}² = ${c}².`
+            };
+
+        } else {
+
+            generatePractice();
+
+            return;
+
+        }
+
+    }
+
+
+    currentPractice = q;
+
+
+    document.getElementById(
+        "practiceQuestion"
+    ).textContent =
+        q.question;
+
+
+    document.getElementById(
+        "practiceAnswer"
+    ).value = "";
+
+
+    document.getElementById(
+        "practiceFeedback"
+    ).className =
+        "feedback";
+
+
+    document.getElementById(
+        "practiceFeedback"
+    ).textContent = "";
+
+
+    document.getElementById(
+        "practiceHint"
+    ).textContent =
+        q.hint;
+
+
+    document.getElementById(
+        "practiceHint"
+    ).style.display =
+        "none";
+
+}
+
+
+function normalizeAnswer(value) {
+
+    return value
+        .trim()
+        .replace(/\s/g,"")
+        .toLowerCase();
+
+}
+
+
+function checkPractice() {
+
+    if(!currentPractice) return;
+
+    const input =
+        normalizeAnswer(
+            document.getElementById(
+                "practiceAnswer"
+            ).value
+        );
+
+
+    const correct =
+        normalizeAnswer(
+            currentPractice.answer
+        );
+
+
+    const feedback =
+        document.getElementById(
+            "practiceFeedback"
+        );
+
+
+    if(input === correct) {
+
+        feedback.className =
+            "feedback correct";
+
+        feedback.innerHTML =
+            `✓ Correct! +10 XP<br>
+             ${currentPractice.explanation}`;
+
+        addXP(10);
+
+    } else {
+
+        feedback.className =
+            "feedback incorrect";
+
+        feedback.innerHTML =
+            `Not quite. Think about the steps and try again.`;
+
+    }
+
+}
+
+
+function toggleHint() {
+
+    const hint =
+        document.getElementById(
+            "practiceHint"
+        );
+
+    hint.style.display =
+        hint.style.display === "block"
+            ? "none"
+            : "block";
+
+}
+
+
+/* =========================================
+   QUIZ
+========================================= */
+
+let quizData = [];
+
+
+function generateQuiz() {
+
+    quizData = [
+
+        {
+            q:"Solve: 2x + 6 = 18.",
+            options:["4","5","6","7"],
+            answer:"6"
+        },
+
+        {
+            q:"What is the slope of y = 5x − 2?",
+            options:["−2","2","5","7"],
+            answer:"5"
+        },
+
+        {
+            q:"What is the area of a triangle with base 8 and height 5?",
+            options:["20","40","13","80"],
+            answer:"20"
+        },
+
+        {
+            q:"Which is equivalent to 3(x + 4)?",
+            options:[
+                "3x + 4",
+                "3x + 7",
+                "3x + 12",
+                "x + 12"
+            ],
+            answer:"3x + 12"
+        },
+
+        {
+            q:"What is the probability of rolling an even number on a fair six-sided die?",
+            options:[
+                "1/6",
+                "1/3",
+                "1/2",
+                "2/3"
+            ],
+            answer:"1/2"
+        }
+
+    ];
+
+
+    const container =
+        document.getElementById(
+            "quizQuestions"
+        );
+
+    container.innerHTML = "";
+
+
+    quizData.forEach(
+        (item,index) => {
+
+            const card =
+                document.createElement("div");
+
+            card.className =
+                "quiz-card";
+
+            card.innerHTML = `
+
+                <h3>
+                    ${index+1}. ${item.q}
+                </h3>
+
+                <br>
+
+                ${item.options.map(
+                    option => `
+
+                    <label class="option">
+
+                        <input
+                            type="radio"
+                            name="quiz${index}"
+                            value="${option}">
+
+                        ${option}
+
+                    </label>
+
+                    `
+                ).join("")}
+
+            `;
+
+            container.appendChild(card);
+
+        }
+    );
+
+
+    document.getElementById(
+        "quizResult"
+    ).style.display =
+        "none";
+
+}
+
+
+function submitQuiz() {
+
+    let score = 0;
+
+    quizData.forEach(
+        (item,index) => {
+
+            const selected =
+                document.querySelector(
+                    `input[name="quiz${index}"]:checked`
+                );
+
+            if(
+                selected &&
+                selected.value === item.answer
+            ) {
+                score++;
+            }
+
+        }
+    );
+
+
+    const xp =
+        score * 20;
+
+
+    if(score > 0) {
+
+        addXP(xp);
+
+    }
+
+
+    const result =
+        document.getElementById(
+            "quizResult"
+        );
+
+    result.style.display =
+        "block";
+
+
+    result.innerHTML = `
+
+        <h2>
+            Quiz Complete!
+        </h2>
+
+        <p>
+            You scored
+            <strong>${score}/${quizData.length}</strong>.
+        </p>
+
+        <p>
+            You earned
+            <strong>${xp} XP</strong>.
+        </p>
+
+    `;
+
+}
+
+
+/* =========================================
+   BADGES
+========================================= */
+
+const badges = [
+
+    {
+        id:"firstLesson",
+        icon:"🌱",
+        name:"First Steps",
+        description:"Complete your first lesson.",
+        check:() =>
+            state.lessonsCompleted.length >= 1
+    },
+
+    {
+        id:"fiveLessons",
+        icon:"📚",
+        name:"Getting Started",
+        description:"Complete 5 lessons.",
+        check:() =>
+            state.lessonsCompleted.length >= 5
+    },
+
+    {
+        id:"tenLessons",
+        icon:"🚀",
+        name:"Math Explorer",
+        description:"Complete 10 lessons.",
+        check:() =>
+            state.lessonsCompleted.length >= 10
+    },
+
+    {
+        id:"twentyLessons",
+        icon:"🧠",
+        name:"Problem Solver",
+        description:"Complete 20 lessons.",
+        check:() =>
+            state.lessonsCompleted.length >= 20
+    },
+
+    {
+        id:"hundredXP",
+        icon:"⭐",
+        name:"XP Collector",
+        description:"Earn 100 XP.",
+        check:() =>
+            state.xp >= 100
+    },
+
+    {
+        id:"fiveHundredXP",
+        icon:"🏆",
+        name:"Math Master",
+        description:"Earn 500 XP.",
+        check:() =>
+            state.xp >= 500
+    }
+
+];
+
+
+function checkBadges() {
+
+    badges.forEach(badge => {
+
+        if(
+            badge.check() &&
+            !state.badges.includes(badge.id)
+        ) {
+
+            state.badges.push(
+                badge.id
+            );
+
+        }
+
+    });
+
+}
+
+
+function renderBadges() {
+
+    const grid =
+        document.getElementById(
+            "badgeGrid"
+        );
+
+    grid.innerHTML = "";
+
+
+    badges.forEach(badge => {
+
+        const unlocked =
+            state.badges.includes(
+                badge.id
+            );
+
+
+        const div =
+            document.createElement("div");
+
+        div.className =
+            "badge " +
+            (unlocked
+                ? "unlocked"
+                : "");
+
+
+        div.innerHTML = `
+
+            <div class="badge-icon">
+                ${badge.icon}
+            </div>
+
+            <h3>
+                ${badge.name}
+            </h3>
+
+            <p>
+                ${badge.description}
+            </p>
+
+            <br>
+
+            <small>
+                ${
+                    unlocked
+                    ? "✓ Unlocked"
+                    : "🔒 Locked"
+                }
+            </small>
+
+        `;
+
+        grid.appendChild(div);
+
+    });
+
+}
+
+
+/* =========================================
+   DASHBOARD
+========================================= */
+
+function updateDashboard() {
+
+    checkBadges();
+
+
+    document.getElementById(
+        "dashXP"
+    ).textContent =
+        state.xp;
+
+
+    document.getElementById(
+        "xpDisplay"
+    ).textContent =
+        state.xp + " XP";
+
+
+    document.getElementById(
+        "dashLessons"
+    ).textContent =
+        state.lessonsCompleted.length;
+
+
+    document.getElementById(
+        "dashBadges"
+    ).textContent =
+        state.badges.length;
+
+
+    document.getElementById(
+        "dashStreak"
+    ).textContent =
+        state.streak;
+
+
+    const totalLessons =
+        units.reduce(
+            (sum,unit) =>
+                sum + unit.lessons.length,
+            0
+        );
+
+
+    const percent =
+        Math.round(
+            state.lessonsCompleted.length /
+            totalLessons *
+            100
+        );
+
+
+    document.getElementById(
+        "coursePercent"
+    ).textContent =
+        percent + "%";
+
+
+    document.getElementById(
+        "courseProgress"
+    ).style.width =
+        percent + "%";
+
+}
+
+
+/* =========================================
+   STREAK
+========================================= */
+
+function updateStreak() {
+
+    const today =
+        new Date()
+        .toISOString()
+        .split("T")[0];
+
+
+    if(
+        state.lastVisit === today
+    ) {
+        return;
+    }
+
+
+    const yesterday =
+        new Date(
+            Date.now() -
+            86400000
+        )
+        .toISOString()
+        .split("T")[0];
+
+
+    if(
+        state.lastVisit === yesterday
+    ) {
+
+        state.streak++;
+
+    } else {
+
+        state.streak = 1;
+
+    }
+
+
+    state.lastVisit =
+        today;
+
+
+    saveState();
+
+}
+
+
+/* =========================================
+   DARK MODE
+========================================= */
+
+function toggleDarkMode() {
+
+    state.dark =
+        !state.dark;
+
+    document.body.classList.toggle(
+        "dark",
+        state.dark
+    );
+
+    saveState();
+
+}
+
+
+/* =========================================
+   CALCULATOR
+========================================= */
+
+function addCalc(value) {
+
+    document.getElementById(
+        "calcDisplay"
+    ).value += value;
+
+}
+
+
+function clearCalc() {
+
+    document.getElementById(
+        "calcDisplay"
+    ).value = "";
+
+}
+
+
+function backspace() {
+
+    const display =
+        document.getElementById(
+            "calcDisplay"
+        );
+
+    display.value =
+        display.value.slice(0,-1);
+
+}
+
+
+function calculate() {
+
+    const display =
+        document.getElementById(
+            "calcDisplay"
+        );
+
+    try {
+
+        /*
+            This is intentionally limited
+            to calculator-style characters.
+        */
+
+        const expression =
+            display.value;
+
+        if(
+            !/^[0-9+\-*/().\s]+$/.test(
+                expression
+            )
+        ) {
+
+            display.value =
+                "Error";
+
+            return;
+
+        }
+
+        display.value =
+            Function(
+                '"use strict";return (' +
+                expression +
+                ')'
+            )();
+
+    }
+
+    catch {
+
+        display.value =
+            "Error";
+
+    }
+
+}
+
+
+/* =========================================
+   SEARCH
+========================================= */
+
+function searchLessons() {
+
+    const query =
+        document.getElementById(
+            "searchBox"
+        ).value
+        .toLowerCase()
+        .trim();
+
+
+    if(!query) return;
+
+
+    const results = [];
+
+
+    units.forEach(unit => {
+
+        unit.lessons.forEach(
+            (lesson,index) => {
+
+                if(
+                    lesson.title
+                        .toLowerCase()
+                        .includes(query) ||
+
+                    unit.title
+                        .toLowerCase()
+                        .includes(query)
+                ) {
+
+                    results.push({
+                        unit,
+                        lesson,
+                        index
+                    });
+
+                }
+
+            }
+        );
+
+    });
+
+
+    if(results.length > 0) {
+
+        showSearchResults(results);
+
+    }
+
+}
+
+
+function showSearchResults(results) {
+
+    const existing =
+        document.getElementById(
+            "searchResults"
+        );
+
+
+    if(existing) {
+        existing.remove();
+    }
+
+
+    const box =
+        document.createElement("div");
+
+    box.id =
+        "searchResults";
+
+    box.className =
+        "search-results";
+
+
+    results.slice(0,8)
+        .forEach(result => {
+
+            const div =
+                document.createElement("div");
+
+            div.className =
+                "search-result";
+
+            div.innerHTML = `
+
+                <strong>
+                    Unit ${result.unit.id}:
+                    ${result.lesson.title}
+                </strong>
+
+                <br>
+
+                <small>
+                    ${result.unit.title}
+                </small>
+
+            `;
+
+
+            div.onclick =
+                () => {
+
+                    openUnit(
+                        result.unit.id
+                    );
+
+                    openLesson(
+                        result.unit.id,
+                        result.index
+                    );
+
+                    box.remove();
+
+                };
+
+
+            box.appendChild(div);
+
+        });
+
+
+    document
+        .querySelector(".topbar")
+        .appendChild(box);
+
+}
+
+
+/* =========================================
+   INITIALIZATION
+========================================= */
+
+function initialize() {
+
+    document.body.classList.toggle(
+        "dark",
+        state.dark
+    );
+
+    updateStreak();
+
+    checkBadges();
+
+    updateDashboard();
+
+    renderUnits();
+
+}
+
+
+initialize();
+
+</script>
+
+</body>
+</html>
