@@ -3960,3 +3960,238 @@ initialize();
 
 </body>
 </html>
+
+<style>
+/* =========================================
+   MOBILE SIDEBAR FIX
+========================================= */
+
+/* Dark background behind the open sidebar */
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 998;
+}
+
+/* Show overlay when sidebar is open */
+.sidebar-overlay.show {
+    display: block;
+}
+
+/* Close button inside mobile sidebar */
+.mobile-sidebar-close {
+    display: none;
+    width: 42px;
+    height: 42px;
+    border: none;
+    border-radius: 10px;
+    background: transparent;
+    color: var(--text);
+    font-size: 1.8rem;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    margin-bottom: 8px;
+}
+
+.mobile-sidebar-close:hover {
+    background: var(--primary-light);
+}
+
+/* Make sure sidebar stays above the overlay */
+.sidebar {
+    z-index: 999;
+}
+
+/* Mobile settings */
+@media (max-width: 900px) {
+
+    .mobile-sidebar-close {
+        display: flex;
+    }
+
+    .sidebar {
+        width: min(290px, 85vw);
+        max-width: 85vw;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .sidebar.open {
+        transform: translateX(0);
+    }
+
+    body.sidebar-open {
+        overflow: hidden;
+    }
+}
+
+/* Desktop: don't show the mobile overlay/button */
+@media (min-width: 901px) {
+
+    .sidebar-overlay {
+        display: none !important;
+    }
+
+    .mobile-sidebar-close {
+        display: none !important;
+    }
+}
+</style>
+
+
+<script>
+/* =========================================
+   MOBILE SIDEBAR IMPROVEMENTS
+========================================= */
+
+document.addEventListener("DOMContentLoaded", function() {
+
+    const sidebar = document.getElementById("sidebar");
+
+    if(!sidebar) return;
+
+
+    /* -----------------------------------------
+       CREATE MOBILE CLOSE BUTTON
+    ----------------------------------------- */
+
+    const closeButton = document.createElement("button");
+
+    closeButton.className = "mobile-sidebar-close";
+    closeButton.type = "button";
+    closeButton.setAttribute("aria-label", "Close menu");
+    closeButton.innerHTML = "✕";
+
+
+    /* Put the close button at the top of the sidebar */
+    sidebar.insertBefore(closeButton, sidebar.firstChild);
+
+
+    /* -----------------------------------------
+       CREATE DARK OVERLAY
+    ----------------------------------------- */
+
+    const overlay = document.createElement("div");
+
+    overlay.className = "sidebar-overlay";
+    overlay.setAttribute("aria-hidden", "true");
+
+    document.body.appendChild(overlay);
+
+
+    /* -----------------------------------------
+       CLOSE SIDEBAR
+    ----------------------------------------- */
+
+    function closeMobileSidebar() {
+
+        sidebar.classList.remove("open");
+        overlay.classList.remove("show");
+        document.body.classList.remove("sidebar-open");
+
+    }
+
+
+    /* -----------------------------------------
+       OPEN / CLOSE SIDEBAR
+    ----------------------------------------- */
+
+    window.toggleSidebar = function() {
+
+        const isOpen = sidebar.classList.contains("open");
+
+        if(isOpen) {
+
+            closeMobileSidebar();
+
+        } else {
+
+            sidebar.classList.add("open");
+            overlay.classList.add("show");
+            document.body.classList.add("sidebar-open");
+
+        }
+
+    };
+
+
+    /* -----------------------------------------
+       CLOSE BUTTON
+    ----------------------------------------- */
+
+    closeButton.addEventListener("click", function() {
+
+        closeMobileSidebar();
+
+    });
+
+
+    /* -----------------------------------------
+       CLICK OUTSIDE SIDEBAR
+    ----------------------------------------- */
+
+    overlay.addEventListener("click", function() {
+
+        closeMobileSidebar();
+
+    });
+
+
+    /* -----------------------------------------
+       CLOSE AFTER CHOOSING A SIDEBAR OPTION
+    ----------------------------------------- */
+
+    sidebar.addEventListener("click", function(event) {
+
+        const button = event.target.closest(".sidebar-button");
+
+        if(button) {
+
+            /*
+             * Give the existing onclick="showPage(...)"
+             * a moment to run, then close the sidebar.
+             */
+            setTimeout(function() {
+                closeMobileSidebar();
+            }, 50);
+
+        }
+
+    });
+
+
+    /* -----------------------------------------
+       ESCAPE KEY
+    ----------------------------------------- */
+
+    document.addEventListener("keydown", function(event) {
+
+        if(event.key === "Escape") {
+
+            closeMobileSidebar();
+
+        }
+
+    });
+
+
+    /* -----------------------------------------
+       CLOSE WHEN WINDOW GETS WIDER
+    ----------------------------------------- */
+
+    window.addEventListener("resize", function() {
+
+        if(window.innerWidth > 900) {
+
+            closeMobileSidebar();
+
+        }
+
+    });
+
+});
+</script>
